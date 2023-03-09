@@ -8,13 +8,10 @@ class ElectricalDevise {
 	}
 	turnOn() {
 		this.isOn = true;
-		if (this.constructor == Tv.prototype.constructor)
-			this.currentChannel = '1';
+
 	}
 	turnOff() {
 		this.isOn = false;
-		if (this.constructor == Tv.prototype.constructor)
-			delete this.currentChannel;
 	}
 }
 //Создание класса для компьютеров с использованием прототипа класса электронных устройств 
@@ -43,6 +40,14 @@ class Tv extends ElectricalDevise {
 	constructor(option) {
 		super(option);
 		this.resolution = option.resolution;
+	}
+	turnOn() {
+		super.turnOn();
+		this.currentChannel = '1';
+	}
+	turnOff() {
+		super.turnOff();
+		delete this.currentChannel;
 	}
 	changeChannel(newChan) {
 		if ('currentChannel' in this) {
